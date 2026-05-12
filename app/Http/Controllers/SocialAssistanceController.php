@@ -66,7 +66,7 @@ class SocialAssistanceController extends Controller
 
         try {
             $socialAssistance = $this->socialAssistanceRepository->create($request);
-            return ResponseHelper::jsonResponse(true, 'Data Bantuan Sosial Berhasil Dibuat', SocialAssistanceResource::make($socialAssistance), 201);
+            return ResponseHelper::jsonResponse(true, 'Data Bantuan Sosial Berhasil Dibuat', new SocialAssistanceResource($socialAssistance), 201);
         } catch (\Exception $e) {
             return ResponseHelper::jsonResponse(false, 'Data Bantuan Sosial Gagal Dibuat', null, 500);
         }
@@ -125,6 +125,7 @@ class SocialAssistanceController extends Controller
             }
 
             $this->socialAssistanceRepository->delete($id);
+            
             return ResponseHelper::jsonResponse(true, 'Data Bantuan Sosial Berhasil Dihapus', null, 200);
         } catch (\Exception $e) {
             return ResponseHelper::jsonResponse(false, 'Data Bantuan Sosial Gagal Dihapus', null, 500);
